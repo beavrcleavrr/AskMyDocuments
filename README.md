@@ -2,14 +2,14 @@
 
 AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmented Generation) system using AWS Bedrock, Amazon S3, and Python. It allows users to ask questions about their documents stored in S3 and receive intelligent answers powered by Bedrock foundation models.
 
-## 🚀 Features
+## Features
 - Upload and manage documents in Amazon S3
 - Embed and retrieve document chunks using vector search
 - Generate answers using AWS Bedrock models
 - Simple and extensible Python3 codebase
 - GitHub Codespaces compatible
 
-## 🛠 Technologies Used
+## Technologies Used
 - Python 3
 - AWS Bedrock
 - Amazon S3
@@ -17,7 +17,7 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 - FAISS (for vector search)
 - GitHub & GitHub Codespaces
 
-## 📦 Setup Instructions
+## Setup Instructions
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/AskMyDocuments.git
@@ -29,11 +29,11 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
    ```
 4. Configure AWS credentials using environment variables or IAM roles.
 
-## 🧪 Usage
+## Usage
 - Upload documents to your configured S3 bucket.
 - Run the ingestion script to chunk and embed documents.
 - Ask questions via CLI or web interface.
 - View answers generated using Bedrock models.
 
-## 📄 License
+## License
 This project is licensed under the MIT License.
