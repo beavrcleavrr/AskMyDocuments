@@ -3,3 +3,4 @@ python-dotenv
 PyMuPDF
 pytesseract
 pillow
+streamlit
