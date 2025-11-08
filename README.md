@@ -23,18 +23,19 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
    git clone https://github.com/yourusername/AskMyDocuments.git
    ```
 2. Open in GitHub Codespaces or your local IDE.
-3. Install dependencies:
+3. Configure .env file. 
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Configure system packages:
+5. Configure system packages:
 ``` bash
    sudo apt update && sudo apt install tesseract-ocr -y
    ```
 6. Configure AWS credentials using environment variables or IAM roles (Production Enviroments).
    
 ## Usage
-- Upload documents to your configured S3 bucket (ensure files are in folder labled 'documents').
+- Upload documents to your configured S3 bucket.
 - Edit .env.example (change name to .env, add bucket name, AWS access and secret access keys)
 - Run the ingestion script to chunk and embed documents
   ```bash
