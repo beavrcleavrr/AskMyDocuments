@@ -103,7 +103,7 @@ def process_documents(file_paths):
         try:
             text = extract_text_from_pdf(path)
         except Exception as e:
-            print(f"  ⚠️ Skipping {filename}: {e}")
+            print(f"   Skipping {filename}: {e}")
             continue
 
         chunks = chunk_text(text)
@@ -132,19 +132,19 @@ def write_chunks_json(records, output_path=OUTPUT_PATH):
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(records, f, ensure_ascii=False, indent=2)
-    print(f"✅ Wrote {len(records)} chunks to {os.path.abspath(output_path)}")
+    print(f" Wrote {len(records)} chunks to {os.path.abspath(output_path)}")
 
 if __name__ == "__main__":
     if not BUCKET_NAME:
-        print("❌ Error: S3_BUCKET_NAME is not set in the .env file.")
+        print(" Error: S3_BUCKET_NAME is not set in the .env file.")
         exit(1)
 
     files = list_and_download_documents()
     if files:
         records = process_documents(files)
         write_chunks_json(records, OUTPUT_PATH)
-        print(f"✅ Downloaded {len(files)} PDF files and created {len(records)} chunks.")
+        print(f" Downloaded {len(files)} PDF files and created {len(records)} chunks.")
     else:
         # Still write an empty chunks.json so downstream steps don't crash
         write_chunks_json([], OUTPUT_PATH)
-        print("⚠️ No PDF files processed.")
+        print(" No PDF files processed.")
