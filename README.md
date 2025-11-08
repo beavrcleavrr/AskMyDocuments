@@ -27,10 +27,11 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
    ```bash
    pip install -r requirements.txt
    ```
-4. Configure AWS credentials using environment variables or IAM roles.
-5. ``` bash
+4. Configure system packages:
+``` bash
    sudo apt update && sudo apt install tesseract-ocr -y
    ```
+6. Configure AWS credentials using environment variables or IAM roles (Production Enviroments).
    
 ## Usage
 - Upload documents to your configured S3 bucket.
