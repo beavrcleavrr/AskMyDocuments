@@ -34,9 +34,10 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
    
 ## Usage
 - Upload documents to your configured S3 bucket.
+- Edit .env.example (change name to .env, add bucket name, AWS access and secret access keys)
 - Run the ingestion script to chunk and embed documents
   ```bash
-  python3 s3_ingest_and_chunk.py && python3 generate_embeddings.py)
+  python3 s3_ingest_and_chunk.py && python3 generate_embeddings.py
   ```
 - Launch the web-based UI:
   ```bash
