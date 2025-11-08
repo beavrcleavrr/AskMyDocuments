@@ -34,9 +34,13 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
    
 ## Usage
 - Upload documents to your configured S3 bucket.
-- Run the ingestion script to chunk and embed documents.
-- Ask questions via CLI or web interface.
-- View answers generated using Bedrock models.
+- Run the ingestion script to chunk and embed documents (s3_ingest_and_chunk.py -> generate_embeddings.py)
+- Launch the web-based UI:
+  ```bash
+  streamlit run streamlit_app.py)
+  ```
+- Ask questions via web interface.
+- View answers generated using the Bedrock model.
 
 ## License
 This project is licensed under the MIT License.
