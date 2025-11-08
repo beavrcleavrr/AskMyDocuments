@@ -10,11 +10,9 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 - GitHub Codespaces compatible
 
 ## Technologies Used
-- Python 3
+- Python3
 - AWS Bedrock
 - Amazon S3
-- LangChain
-- FAISS (for vector search)
 - GitHub & GitHub Codespaces
 
 ## Setup Instructions
