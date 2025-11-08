@@ -30,3 +30,20 @@ htmlcov/
 # Mypy and Pyre
 .mypy_cache/
 .pyre/
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.cache/
+
+# Data/output
+downloaded_docs/
+*.log
+
+# Streamlit
+.streamlit/
