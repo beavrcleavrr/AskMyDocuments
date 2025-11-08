@@ -34,7 +34,7 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 6. Configure AWS credentials using environment variables or IAM roles (Production Enviroments).
    
 ## Usage
-- Upload documents to your configured S3 bucket ('/documents' folder).         # VERY IMPORTANT: Ensure files are in a folder named 'documents')
+- Upload documents to your configured S3 bucket (ensure files are in folder labled 'documents').
 - Edit .env.example (change name to .env, add bucket name, AWS access and secret access keys)
 - Run the ingestion script to chunk and embed documents
   ```bash
