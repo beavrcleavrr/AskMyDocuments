@@ -99,7 +99,7 @@ def _embed_bedrock_titan(bedrock, texts: List[str], model_id: str) -> List[List[
                     _backoff_sleep(attempt)
         if last_error:
             # Log and continue; do not crash the whole job
-            print(f"❌ Error embedding chunk (Titan): {last_error}")
+            print(f" Error embedding chunk (Titan): {last_error}")
             # Append placeholder to keep ordering (or skip — but then counts mismatch)
             embs.append([])
     return embs
@@ -143,7 +143,7 @@ def _embed_bedrock_cohere(bedrock, texts: List[str], model_id: str) -> List[List
                 if attempt < MAX_RETRIES:
                     _backoff_sleep(attempt)
         if last_error:
-            print(f"❌ Error embedding batch (Cohere via Bedrock): {last_error}")
+            print(f" Error embedding batch (Cohere via Bedrock): {last_error}")
             # Fill placeholders to keep alignment
             out.extend([[] for _ in batch])
     return out
@@ -218,7 +218,7 @@ def main():
     chunks = _load_chunks(CHUNKS_PATH)
     if not chunks:
         _write_embeddings([], OUT_PATH)
-        print(f"✅ Generated embeddings for 0 chunks and saved to '{OUT_PATH}'.")
+        print(f" Generated embeddings for 0 chunks and saved to '{OUT_PATH}'.")
         return
 
     texts = [c["text"] for c in chunks]  # IMPORTANT: send only strings to the provider
@@ -239,7 +239,7 @@ def main():
 
     # Ensure we have a vector per input (empty vectors mean failed items but keep alignment)
     if len(vectors) != len(chunks):
-        print(f"⚠️ Embedding count mismatch: got {len(vectors)} for {len(chunks)} inputs")
+        print(f" Embedding count mismatch: got {len(vectors)} for {len(chunks)} inputs")
 
     out_records: List[Dict[str, Any]] = []
     dropped = 0
@@ -256,7 +256,7 @@ def main():
 
     _write_embeddings(out_records, OUT_PATH)
     kept = len(out_records)
-    print(f"✅ Generated embeddings for {kept} chunks (dropped {dropped}) and saved to '{OUT_PATH}'.")
+    print(f" Generated embeddings for {kept} chunks (dropped {dropped}) and saved to '{OUT_PATH}'.")
 
 
 if __name__ == "__main__":
