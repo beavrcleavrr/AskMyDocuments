@@ -41,7 +41,7 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
   ```
 - Launch the web-based UI:
   ```bash
-  streamlit run streamlit_app.py)
+  python3 -m streamlit run streamlit_app.py
   ```
 - Ask questions via web interface.
 - View answers generated using the Bedrock model.
