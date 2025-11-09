@@ -11,13 +11,16 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Configuration (env first, then defaults)
+# Configuration
 AWS_REGION = os.getenv("AWS_REGION")
 BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
 PREFIX = os.getenv("S3_PREFIX", "documents/")
 LOCAL_DIR = os.getenv("LOCAL_DIR", "downloaded_docs")
 OUTPUT_PATH = os.getenv("CHUNKS_OUTPUT", "chunks.json")
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "200"))  # words
+
+# Supported file types
+SUPPORTED_EXTENSIONS = (".pdf", ".txt", ".jpeg", ".jpg", ".png")
 
 # Initialize S3 client
 s3 = boto3.client("s3", region_name=AWS_REGION)
@@ -26,7 +29,7 @@ s3 = boto3.client("s3", region_name=AWS_REGION)
 os.makedirs(LOCAL_DIR, exist_ok=True)
 
 def list_and_download_documents():
-    """List PDFs under PREFIX and download them locally. Handles pagination."""
+    """List supported files under PREFIX and download them locally."""
     print(f"Listing files in bucket '{BUCKET_NAME}' with prefix '{PREFIX}'...")
     file_paths = []
     continuation_token = None
@@ -37,7 +40,6 @@ def list_and_download_documents():
             kwargs["ContinuationToken"] = continuation_token
 
         resp = s3.list_objects_v2(**kwargs)
-
         contents = resp.get("Contents", [])
         if not contents and not continuation_token:
             print("No documents found.")
@@ -45,7 +47,7 @@ def list_and_download_documents():
 
         for obj in contents:
             key = obj["Key"]
-            if key.endswith("/") or not key.lower().endswith(".pdf"):
+            if key.endswith("/") or not key.lower().endswith(SUPPORTED_EXTENSIONS):
                 continue
             filename = os.path.basename(key)
             local_path = os.path.join(LOCAL_DIR, filename)
@@ -70,7 +72,7 @@ def extract_text_with_ocr(page):
     return pytesseract.image_to_string(img)
 
 def extract_text_from_pdf(pdf_path):
-    """Extract text; fallback to OCR when the page text is empty."""
+    """Extract text from PDF; fallback to OCR when needed."""
     text_parts = []
     with fitz.open(pdf_path) as doc:
         for page in doc:
@@ -80,28 +82,43 @@ def extract_text_from_pdf(pdf_path):
             text_parts.append(t)
     return "\n".join(text_parts)
 
+def extract_text_from_txt(txt_path):
+    """Read plain text from .txt file."""
+    with open(txt_path, "r", encoding="utf-8") as f:
+        return f.read()
+
+def extract_text_from_image(image_path):
+    """Extract text from image using OCR."""
+    img = Image.open(image_path)
+    if img.mode == "RGBA":
+        img = img.convert("RGB")
+    return pytesseract.image_to_string(img)
+
 def chunk_text(text, chunk_size=CHUNK_SIZE):
-    """Word-based chunking, returns list of chunk strings."""
+    """Split text into word-based chunks."""
     words = text.split()
     if not words:
         return []
     return [" ".join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)]
 
 def process_documents(file_paths):
-    """
-    Process each file into chunk records:
-    {
-      "id": "<filename>_<index>",
-      "text": "<chunk>",
-      "source": "<filename>"
-    }
-    """
+    """Process each file into chunk records."""
     all_records = []
     for path in file_paths:
         filename = os.path.basename(path)
+        ext = os.path.splitext(filename)[1].lower()
         print(f"Extracting text from {filename} ...")
+
         try:
-            text = extract_text_from_pdf(path)
+            if ext == ".pdf":
+                text = extract_text_from_pdf(path)
+            elif ext == ".txt":
+                text = extract_text_from_txt(path)
+            elif ext in (".jpeg", ".jpg", ".png"):
+                text = extract_text_from_image(path)
+            else:
+                print(f"   Skipping unsupported file type: {filename}")
+                continue
         except Exception as e:
             print(f"   Skipping {filename}: {e}")
             continue
@@ -119,13 +136,12 @@ def process_documents(file_paths):
             }
             all_records.append(rec)
 
-        print(f"  ➕ {len(chunks)} chunks from {filename}")
+        print(f"   {len(chunks)} chunks from {filename}")
 
     return all_records
 
 def write_chunks_json(records, output_path=OUTPUT_PATH):
-    """Write chunk records as an array to chunks.json."""
-    # Ensure parent dir exists if path includes directories
+    """Write chunk records to JSON file."""
     parent = os.path.dirname(output_path)
     if parent:
         os.makedirs(parent, exist_ok=True)
@@ -143,8 +159,7 @@ if __name__ == "__main__":
     if files:
         records = process_documents(files)
         write_chunks_json(records, OUTPUT_PATH)
-        print(f" Downloaded {len(files)} PDF files and created {len(records)} chunks.")
+        print(f" Downloaded {len(files)} files and created {len(records)} chunks.")
     else:
-        # Still write an empty chunks.json so downstream steps don't crash
         write_chunks_json([], OUTPUT_PATH)
-        print(" No PDF files processed.")
+        print(" No supported files processed.")
