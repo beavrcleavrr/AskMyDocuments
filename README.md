@@ -63,10 +63,10 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 ```mermaid
 flowchart TD
     A[User Uploads Document] --> B[S3 Bucket]
-    B --> C[Chunk & Embed (Python Script)]
+    B --> C[Chunk and Embed - Python Script]
     C --> D[Vector Search / Retrieval]
-    D --> E[AWS Bedrock Model (Claude, Titan, etc.)]
-    E --> F[Streamlit UI Displays Answer]  
+    D --> E[AWS Bedrock Model - Claude or Titan]
+    E --> F[Streamlit UI Displays Answer]
 
 ## License
 This project is licensed under the MIT License.
