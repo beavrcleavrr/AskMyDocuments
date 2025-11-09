@@ -120,7 +120,7 @@ def process_documents(file_paths):
                 print(f"   Skipping unsupported file type: {filename}")
                 continue
         except Exception as e:
-            print(f"   Skipping {filename}: {e}")
+            print(f"  Skipping {filename}: {e}")
             continue
 
         chunks = chunk_text(text)
