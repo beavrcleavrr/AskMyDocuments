@@ -45,7 +45,7 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
   ```
 - Ask questions via web interface.
 - View answers generated using the Bedrock model.
----
+
 ## How It Works
 
 **AskMyDocuments** uses a lightweight Retrieval-Augmented Generation (RAG) pipeline built with AWS Bedrock and Amazon S3.
