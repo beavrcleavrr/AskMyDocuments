@@ -60,6 +60,7 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 5. **Display:** The Streamlit web UI shows the question, retrieved context, and final answer.
 
 ### Architecture Diagram
+
 ```mermaid
 flowchart TD
     A[User Uploads Document] --> B[S3 Bucket]
