@@ -46,5 +46,27 @@ AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmen
 - Ask questions via web interface.
 - View answers generated using the Bedrock model.
 
+---
+
+## 🧠 How It Works
+
+**AskMyDocuments** uses a lightweight Retrieval-Augmented Generation (RAG) pipeline built with AWS Bedrock and Amazon S3.
+
+### Data Flow Overview
+1. **Upload:** Users upload one or more documents to the configured S3 bucket.  
+2. **Chunk & Embed:** Documents are split into text chunks, and embeddings are generated using Bedrock models.  
+3. **Store & Retrieve:** Embeddings are stored locally or in memory and searched via vector similarity.  
+4. **Answer Generation:** The most relevant chunks are sent to a Bedrock foundation model (e.g., Claude) to generate a context-aware answer.  
+5. **Display:** The Streamlit web UI shows the question, retrieved context, and final answer.
+
+### Architecture Diagram
+```mermaid
+flowchart TD
+    A[User Uploads Document] --> B[S3 Bucket]
+    B --> C[Chunk & Embed (Python Script)]
+    C --> D[Vector Search / Retrieval]
+    D --> E[AWS Bedrock Model (Claude, Titan, etc.)]
+    E --> F[Streamlit UI Displays Answer]  
+
 ## License
 This project is licensed under the MIT License.
