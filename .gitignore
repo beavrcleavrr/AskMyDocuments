@@ -1,4 +1,4 @@
-# 🐍 Python bytecode and caches
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
 *$py.class
@@ -7,43 +7,43 @@ __pycache__/
 *.egg-info/
 .cache/
 
-# 📦 Build / Distribution artifacts
+# Build / Distribution artifacts
 build/
 dist/
 
-# 💻 Virtual environments
+# Virtual environments
 env/
 .venv/
 venv/
 
-# 📓 Jupyter Notebooks
+# Jupyter Notebooks
 .ipynb_checkpoints/
 
-# ⚙️ IDEs and Editors
+# IDEs and Editors
 .vscode/
 .idea/
 
-# 🧪 Testing & Coverage
+# Testing & Coverage
 .pytest_cache/
 .coverage
 htmlcov/
 
-# 🧮 Type checking
+# Type checking
 .mypy_cache/
 .pyre/
 
-# 🔒 Environment variables & secrets
+# Environment variables & secrets
 .env
 .env.*
 !*.example
 
-# 🗂️ Logs & generated data
+# Logs & generated data
 *.log
 downloaded_docs/
 
-# 🌐 Streamlit
+# Streamlit
 .streamlit/
 
-# 🍏 macOS / Windows junk
+# macOS / Windows junk
 .DS_Store
 Thumbs.db
