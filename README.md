@@ -2,6 +2,8 @@
 
 AskMyDocuments is a small project that demonstrates a mini-RAG (Retrieval-Augmented Generation) system using AWS Bedrock, Amazon S3, and Python. It allows users to ask questions about their documents stored in S3 and receive intelligent answers powered by Bedrock foundation models.
 
+Current functionality supports PDF, TXT, and image (JPEG & PNG) files. 
+
 ## Features
 - Upload and manage documents in Amazon S3
 - Embed and retrieve document chunks using vector search
