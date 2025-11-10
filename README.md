@@ -66,5 +66,17 @@ flowchart TD
     D --> E[AWS Bedrock Model - Claude or Titan]
     E --> F[Streamlit UI Displays Answer]
 ```
+---
+
+## Demo
+
+Below is a quick look at **AskMyDocuments** in action — upload, ask, and get AI-powered answers using AWS Bedrock.
+
+| Upload Document | Ask a Question | View the Answer |
+|:----------------:|:---------------:|:----------------:|
+| ![Web Interface](misc/Streamlit_UI.jpg) | ![Terminal_Launch](misc/Terminal_Launch.jpg)
+
+---
+
 ## License
 This project is licensed under the MIT License.
