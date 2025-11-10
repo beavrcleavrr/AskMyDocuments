@@ -70,6 +70,7 @@ flowchart TD
 ## Demo
 
 Below is a quick look at **AskMyDocuments** 
+Demo was used to analyze Okta CVE-2025-29927: https://sec.okta.com/articles/nextjs-CVE-202529927/
 
 ![Web Interface](misc/Streamlit_UI.jpg) ![Terminal_Launch](misc/Terminal_Launch.jpg)
 
