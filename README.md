@@ -72,8 +72,8 @@ flowchart TD
 
 Below is a quick look at **AskMyDocuments** in action — upload, ask, and get AI-powered answers using AWS Bedrock.
 
-| Upload Document | Ask a Question | View the Answer |
-|:----------------:|:---------------:|:----------------:|
+| Streamlit Web UI | Launch from Terminal |
+|:----------------:|:---------------:|
 | ![Web Interface](misc/Streamlit_UI.jpg) | ![Terminal_Launch](misc/Terminal_Launch.jpg)
 
 ---
