@@ -70,7 +70,7 @@ flowchart TD
 
 ## Demo
 
-Below is a quick look at **AskMyDocuments** in action — upload, ask, and get AI-powered answers using AWS Bedrock.
+Below is a quick look at **AskMyDocuments** 
 
 | Streamlit Web UI | Launch from Terminal |
 |:----------------:|:---------------:|
